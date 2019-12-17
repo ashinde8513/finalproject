@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <!-- // this links the html file to the css and js files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="final.css"> 
+<link rel="javascript" href="final.js">
+
+
+</head>
+<body>
+<div id="background" class="text">
+  <!-- // this creates a header with a title and a list item adding bar  -->
+<div id="myDIV" class="header">
+  <h2 style="margin:5px">My To Do List</h2>
+  <input type="text" id="myInput" placeholder="Whatever you need to do...">
+  <span onclick="newElement()" class="addBtn">Add</span>
+</div>
+
+<ul id="myUL">
+  <li>Click on the X to close the tab</li>
+  <li class="checked">click on a task to highlight and strike through it</li>
+</ul>
+
+
+<script>
+	// this creates a "close" button and puts it at the end of the list item 
+	var myNodelist = document.getElementsByTagName("LI");
+	var i;
+	for (i = 0; i < myNodelist.length; i++) {
+	  var span = document.createElement("SPAN");
+	  var txt = document.createTextNode("\u00D7");
+	  span.className = "close";
+	  span.appendChild(txt);
+	  myNodelist[i].appendChild(span);
+	}
+	
+	// this makes it so when you click on the close button it hides the current list item
+	var close = document.getElementsByClassName("close");
+	var i;
+	for (i = 0; i < close.length; i++) {
+	  close[i].onclick = function() {
+		var div = this.parentElement;
+		div.style.display = "none";
+	  }
+	}
+	
+	// this adds a "checked" symbol when you click on a list item
+	var list = document.querySelector('ul');
+	list.addEventListener('click', function(ev) {
+	  if (ev.target.tagName === 'LI') {
+		ev.target.classList.toggle('checked');
+	  }
+	}, false);
+	
+	// this creates a new list item when you click on the "Add" button and creates a pop up if theres nothing in the bar 
+	function newElement() {
+	  var li = document.createElement("li");
+	  var inputValue = document.getElementById("myInput").value;
+	  var t = document.createTextNode(inputValue);
+	  li.appendChild(t);
+	  if (inputValue === '') {
+		alert("You must write something!");
+	  } else {
+		document.getElementById("myUL").appendChild(li);
+	  }
+	  document.getElementById("myInput").value = "";
+	
+	  var span = document.createElement("SPAN");
+	  var txt = document.createTextNode("\u00D7");
+	  span.className = "close";
+	  span.appendChild(txt);
+	  li.appendChild(span);
+	
+	  for (i = 0; i < close.length; i++) {
+		close[i].onclick = function() {
+		  var div = this.parentElement;
+		  div.style.display = "none";
+		}
+	  }
+	}
+	</script>
+	
+
+
+<html>
+<head>
+  <title>Productivity Time</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Bungee|Bungee+Shade|Covered+By+Your+Grace" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:800" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body><center>
+  <div class="page">
+    <header>
+      <h1>Today's Schedule</h1>
+    </header>
+
+    <h4>
+      Schedule your day and be productive !!<br>
+      <span id="clock"></span>
+    </h4>
+
+
+	
+    <img id="productivity" src="data:image/jpeg;base64,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" alt="lolcat">
+
+    <div id="clockbox"></div>
+
+<script type="text/javascript">
+var tday=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+var tmonth=["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+
+
+function GetClock(){
+var d=new Date();
+var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate(),nyear=d.getFullYear();
+var nhour=d.getHours(),nmin=d.getMinutes(),nsec=d.getSeconds(),ap;
+
+if(nhour==0){ap=" AM";nhour=12;}
+else if(nhour<12){ap=" AM";}
+else if(nhour==12){ap=" PM";}
+else if(nhour>12){ap=" PM";nhour-=12;}
+
+if(nmin<=9) nmin="0"+nmin;
+if(nsec<=9) nsec="0"+nsec;
+
+var clocktext=""+tday[nday]+", "+tmonth[nmonth]+" "+ndate+", "+nyear+" "+nhour+":"+nmin+":"+nsec+ap+"";
+document.getElementById('clockbox').innerHTML=clocktext;
+}
+
+GetClock();
+setInterval(GetClock,1000);
+</script>
+
+
+
+
+
+    When are you going to wake up ?
+    <select id="wakeUpTimeSelector">
+      <option value="1">1 AM - 2AM</option>
+      <option value="2">2 AM - 3AM</option>
+      <option value="3">3 AM - 4AM</option>
+      <option value="4">4 AM - 5AM</option>
+      <option value="5">5 AM - 6AM</option>
+      <option value="6">6 AM - 7AM</option>
+      <option value="7">7 AM - 8AM</option>
+      <option value="8" selected>8 AM - 9AM</option>
+      <option value="9">9 AM - 10AM</option>
+      <option value="10">10 AM - 11AM</option>
+      <option value="11">11 AM - 12PM</option>
+      <option value="12">12 PM - 1PM</option>
+      <option value="13">1 PM - 2PM</option>
+      <option value="14">2 PM - 3PM</option>
+      <option value="15">3 PM - 4PM</option>
+      <option value="16">4 PM - 5PM</option>
+      <option value="17">5 PM - 6PM</option>
+      <option value="18">6 PM - 7PM</option>
+      <option value="19">7 PM - 8PM</option>
+      <option value="20">8 PM - 9PM</option>
+      <option value="21">9 PM - 10PM</option>
+      <option value="22">10 PM - 11PM</option>
+      <option value="23">11 PM - 12AM</option>
+      <option value="24">12 AM - 1AM</option>
+    </select>
+    <br>
+    When are you going to eat lunch ? 
+      <select id="lunchTimeSelector">
+        <option value="1">1 AM - 2AM</option>
+        <option value="2">2 AM - 3AM</option>
+        <option value="3">3 AM - 4AM</option>
+        <option value="4">4 AM - 5AM</option>
+        <option value="5">5 AM - 6AM</option>
+        <option value="6">6 AM - 7AM</option>
+        <option value="7">7 AM - 8AM</option>
+        <option value="8">8 AM - 9AM</option>
+        <option value="9">9 AM - 10AM</option>
+        <option value="10">10 AM - 11AM</option>
+        <option value="11">11 AM - 12PM</option>
+        <option value="12" selected>12 PM - 1PM</option>
+        <option value="13">1 PM - 2PM</option>
+        <option value="14">2 PM - 3PM</option>
+        <option value="15">3 PM - 4PM</option>
+        <option value="16">4 PM - 5PM</option>
+        <option value="17">5 PM - 6PM</option>
+        <option value="18">6 PM - 7PM</option>
+        <option value="19">7 PM - 8PM</option>
+        <option value="20">8 PM - 9PM</option>
+        <option value="21">9 PM - 10PM</option>
+        <option value="22">10 PM - 11PM</option>
+        <option value="23">11 PM - 12AM</option>
+        <option value="24">12 AM - 1AM</option>
+      </select>
+    <br>
+    When are you going to take a nap ? 
+    <select id="napTimeSelector">
+      <option value="1">1 AM - 2AM</option>
+      <option value="2">2 AM - 3AM</option>
+      <option value="3">3 AM - 4AM</option>
+      <option value="4">4 AM - 5AM</option>
+      <option value="5">5 AM - 6AM</option>
+      <option value="6">6 AM - 7AM</option>
+      <option value="7">7 AM - 8AM</option>
+      <option value="8">8 AM - 9AM</option>
+      <option value="9">9 AM - 10AM</option>
+      <option value="10">10 AM - 11AM</option>
+      <option value="11">11 AM - 12PM</option>
+      <option value="12">12 PM - 1PM</option>
+      <option value="13">1 PM - 2PM</option>
+      <option value="14">2 PM - 3PM</option>
+      <option value="15" selected>3 PM - 4PM</option>
+      <option value="16">4 PM - 5PM</option>
+      <option value="17">5 PM - 6PM</option>
+      <option value="18">6 PM - 7PM</option>
+      <option value="19">7 PM - 8PM</option>
+      <option value="20">8 PM - 9PM</option>
+      <option value="21">9 PM - 10PM</option>
+      <option value="22">10 PM - 11PM</option>
+      <option value="23">11 PM - 12AM</option>
+      <option value="24">12 AM - 1AM</option>
+      </select>
+    <br>
+	
+	
+<select>
+	<option value="Work Time!">Work Time!</option>
+	<option value="Party Time!">Party Time!</option>
+  </select>
+	</div>
+	
+
+  <script type="text/javascript" src="script.js"></script>
+  </center>
+</body>
+</html>
+
